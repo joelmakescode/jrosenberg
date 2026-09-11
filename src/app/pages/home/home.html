@@ -1,0 +1,98 @@
+<section class="intro">
+  <h1>{{ profile.name }}</h1>
+  <p class="role">{{ profile.role[i18n.lang()] }}</p>
+  <p class="status">
+    <span>{{ profile.location[i18n.lang()] }}</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>{{ profile.status[i18n.lang()] }}</span>
+  </p>
+</section>
+
+<section aria-labelledby="about-heading">
+  <h2 id="about-heading">{{ i18n.t().home.about }}</h2>
+  @for (paragraph of aboutParagraphs(); track $index) {
+    <p>{{ paragraph }}</p>
+  }
+</section>
+
+<section aria-labelledby="skills-heading">
+  <h2 id="skills-heading">{{ i18n.t().home.skills }}</h2>
+  <dl class="skills">
+    @for (group of profile.skills; track group.label.de) {
+      <div class="skill-group">
+        <dt>{{ group.label[i18n.lang()] }}</dt>
+        <dd>
+          <ul class="tag-list">
+            @for (item of group.items; track item) {
+              <li class="tag">{{ item }}</li>
+            }
+          </ul>
+        </dd>
+      </div>
+    }
+  </dl>
+</section>
+
+<section aria-labelledby="projects-heading">
+  <h2 id="projects-heading">{{ i18n.t().home.projects }}</h2>
+  <p class="section-intro">{{ i18n.t().home.projectsIntro }}</p>
+  @if (done.length) {
+    <div class="card-grid">
+      @for (project of done; track project.slug) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+  } @else {
+    <p class="section-intro">{{ i18n.t().home.empty }}</p>
+  }
+</section>
+
+<section aria-labelledby="in-progress-heading">
+  <h2 id="in-progress-heading">{{ i18n.t().home.inProgress }}</h2>
+  <p class="section-intro">{{ i18n.t().home.inProgressIntro }}</p>
+  @if (inProgress.length) {
+    <div class="card-grid">
+      @for (project of inProgress; track project.slug) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+  } @else {
+    <p class="section-intro">{{ i18n.t().home.empty }}</p>
+  }
+</section>
+
+<section aria-labelledby="planned-heading">
+  <h2 id="planned-heading">{{ i18n.t().home.planned }}</h2>
+  <p class="section-intro">{{ i18n.t().home.plannedIntro }}</p>
+  @if (planned.length) {
+    <div class="card-grid">
+      @for (project of planned; track project.slug) {
+        <app-project-card [project]="project" />
+      }
+    </div>
+  } @else {
+    <p class="section-intro">{{ i18n.t().home.empty }}</p>
+  }
+</section>
+
+<section aria-labelledby="contact-heading">
+  <h2 id="contact-heading">{{ i18n.t().home.contact }}</h2>
+  <ul class="contact-list">
+    <li>
+      <span class="contact-label">{{ i18n.t().home.email }}</span>
+      <a [href]="'mailto:' + profile.links.email">{{ profile.links.email }}</a>
+    </li>
+    <li>
+      <span class="contact-label">GitHub</span>
+      <a [href]="profile.links.github" target="_blank" rel="noopener noreferrer">{{
+        githubLabel
+      }}</a>
+    </li>
+    @if (profile.links.linkedin; as linkedin) {
+      <li>
+        <span class="contact-label">LinkedIn</span>
+        <a [href]="linkedin" target="_blank" rel="noopener noreferrer">{{ linkedinLabel }}</a>
+      </li>
+    }
+  </ul>
+</section>

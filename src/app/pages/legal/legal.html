@@ -1,0 +1,51 @@
+<p class="breadcrumb">
+  <a routerLink="/">{{ i18n.t().nav.backHome }}</a>
+</p>
+
+<h1>{{ i18n.t().legal.title }}</h1>
+
+<section>
+  <h2>{{ i18n.t().legal.providerHeading }}</h2>
+  <address>
+    {{ legal.name }}<br />
+    {{ legal.street }}<br />
+    {{ legal.postalCode }} {{ legal.city }}<br />
+    {{ legal.country[i18n.lang()] }}
+  </address>
+</section>
+
+<section>
+  <h2>{{ i18n.t().legal.contactHeading }}</h2>
+  <ul class="contact-list">
+    <li>
+      <span class="contact-label">{{ i18n.t().home.email }}</span>
+      <a [href]="'mailto:' + legal.email">{{ legal.email }}</a>
+    </li>
+    @if (legal.phone; as phone) {
+      <li>
+        <span class="contact-label">{{ i18n.t().legal.phoneLabel }}</span>
+        <span>{{ phone }}</span>
+      </li>
+    }
+  </ul>
+</section>
+
+<section>
+  <h2>{{ i18n.t().legal.responsibleHeading }}</h2>
+  <p>{{ legal.name }}, {{ i18n.t().legal.addressAsAbove }}</p>
+</section>
+
+<section>
+  <h2>{{ i18n.t().legal.liabilityHeading }}</h2>
+  <p>{{ i18n.t().legal.liabilityText }}</p>
+</section>
+
+<section>
+  <h2>{{ i18n.t().legal.copyrightHeading }}</h2>
+  <p>{{ i18n.t().legal.copyrightText }}</p>
+</section>
+
+<section>
+  <h2>{{ i18n.t().legal.privacyHeading }}</h2>
+  <p>{{ i18n.t().legal.privacyText }}</p>
+</section>

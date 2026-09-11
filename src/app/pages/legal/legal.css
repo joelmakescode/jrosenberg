@@ -1,0 +1,42 @@
+.breadcrumb {
+  margin: 0 0 2rem;
+  font-size: 0.9375rem;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.625rem, 1.4rem + 1.4vw, 2.125rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin-top: 2.5rem;
+  color: var(--fg);
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+address {
+  font-style: normal;
+}
+
+.contact-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-label {
+  min-width: 5.5rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}

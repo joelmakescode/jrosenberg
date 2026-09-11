@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { PROFILE } from './data/profile';
+import { LanguageService } from './i18n/language';
+import { LangToggle } from './components/lang-toggle/lang-toggle';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [RouterOutlet, RouterLink, LangToggle],
   templateUrl: './app.html',
+  styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly title = signal('jrosenberg');
+  protected readonly i18n = inject(LanguageService);
+  protected readonly profile = PROFILE;
+  protected readonly year = new Date().getFullYear();
 }

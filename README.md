@@ -1,59 +1,70 @@
-# Jrosenberg
+# jrosenberg.dev
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.7.
+Persönliche Seite: Startseite mit Profil und Projekten, eine Detailseite pro Projekt,
+zweisprachig (DE/EN). Statisch vorgerendert, kein Backend, keine Cookies, kein Tracking.
 
-## Development server
+Angular 22 · Prerendering über `@angular/ssr` · Hosting auf Cloudflare Pages.
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Entwickeln
 
 ```bash
-ng generate component component-name
+npm start     # Dev-Server auf http://localhost:4200
+npm test      # Unit-Tests (Vitest)
+npm run build # Produktionsbuild nach dist/jrosenberg/browser
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Den fertigen Build so testen, wie ihn der Hoster ausliefert:
 
 ```bash
-ng generate --help
+cd dist/jrosenberg/browser && python3 -m http.server 8080
 ```
 
-## Building
+## Inhalte pflegen
 
-To build the project run:
+Alles Inhaltliche liegt als typisiertes TypeScript im Repository – kein CMS, keine API:
 
-```bash
-ng build
-```
+| Datei                        | Inhalt                                                          |
+| ---------------------------- | --------------------------------------------------------------- |
+| `src/app/data/profile.ts`    | Name, Rolle, Standort, Status, Über-mich-Text, Skills, Links    |
+| `src/app/data/projects.ts`   | Alle Projekte (`status: 'done' \| 'in-progress' \| 'planned'`)  |
+| `src/app/data/site.ts`       | Domain für canonical-/Open-Graph-Links, optionales Vorschaubild |
+| `src/app/data/legal.ts`      | Angaben für das Impressum                                       |
+| `src/app/i18n/dictionary.ts` | Alle UI-Texte in DE und EN                                      |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+`title` darf ein einfacher String sein, wenn es ein Eigenname ist (`'EcoPlatform'`),
+oder `{ de, en }`, wenn er übersetzbare Wörter enthält – dafür gibt es den Helfer
+`localized()` in `src/app/shared/localized.ts`. `period` akzeptiert `'YYYY-MM'` und
+`'YYYY'`, wenn der Monat noch offen ist.
 
-## Running unit tests
+`status` entscheidet, in welcher Sektion der Startseite ein Projekt landet:
+`done` → „Projekte", `in-progress` → „In Entwicklung", `planned` → „Geplant".
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Ein neues Projekt ist ein Eintrag in `PROJECTS`. Der `slug` wird zur URL
+(`/projects/<slug>`), muss eindeutig sein und wird beim Build automatisch zu einer
+eigenen HTML-Datei vorgerendert – Route, Karte, Detailseite und Sitemap ergeben sich
+daraus von selbst. `end` im Zeitraum weglassen heißt „läuft noch"; bei
+`status: 'planned'` wird daraus „geplant ab …".
 
-```bash
-ng test
-```
+Fehlt ein englischer Text im Wörterbuch, schlägt der Build fehl – das ist Absicht.
 
-## Running end-to-end tests
+## Build-Ausgabe
 
-For end-to-end (e2e) testing, run:
+`npm run build` erzeugt in `dist/jrosenberg/browser`:
 
-```bash
-ng e2e
-```
+- `index.html` und `projects/<slug>/index.html` – vorgerenderte Seiten inklusive
+  Titel, Description und Open-Graph-Tags
+- `404.html` – die leere Angular-Shell; Cloudflare Pages liefert sie für unbekannte
+  Pfade mit Status 404 aus, Angular rendert darin die Not-Found-Seite
+- `sitemap.xml` und `robots.txt` – von `scripts/postbuild.mjs` aus den tatsächlich
+  vorgerenderten Seiten erzeugt
+- `_headers` – Security-Header und Cache-Regeln für Cloudflare Pages
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Deployment (Cloudflare Pages)
 
-## Additional Resources
+| Einstellung            | Wert                      |
+| ---------------------- | ------------------------- |
+| Build command          | `npm run build`           |
+| Build output directory | `dist/jrosenberg/browser` |
+| Environment variable   | `NODE_VERSION` = `24`     |
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Jeder Push auf `main` deployt live, jeder Branch bekommt eine Preview-URL.

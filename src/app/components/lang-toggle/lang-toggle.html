@@ -1,0 +1,13 @@
+<div class="lang-toggle" role="group" [attr.aria-label]="i18n.t().nav.language">
+  @for (lang of langs; track lang) {
+    <button
+      type="button"
+      class="lang-button"
+      [class.is-active]="i18n.lang() === lang"
+      [attr.aria-pressed]="i18n.lang() === lang"
+      (click)="i18n.setLang(lang)"
+    >
+      {{ label(lang) }}
+    </button>
+  }
+</div>

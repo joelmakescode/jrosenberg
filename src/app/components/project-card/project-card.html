@@ -1,0 +1,19 @@
+<article class="card">
+  <h3 class="card-title">
+    <a class="card-link" [routerLink]="['/projects', project().slug]">{{ title() }}</a>
+  </h3>
+
+  <p class="card-summary">{{ project().summary[i18n.lang()] }}</p>
+
+  <p class="card-meta">
+    <time [attr.datetime]="project().period.start">{{ period() }}</time>
+  </p>
+
+  @if (project().tech.length) {
+    <ul class="tag-list">
+      @for (tech of project().tech; track tech) {
+        <li class="tag">{{ tech }}</li>
+      }
+    </ul>
+  }
+</article>

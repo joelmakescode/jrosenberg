@@ -1,0 +1,69 @@
+@if (project(); as project) {
+  <article class="project">
+    <p class="breadcrumb">
+      <a routerLink="/">{{ i18n.t().project.back }}</a>
+    </p>
+
+    <header class="project-header">
+      <p
+        class="badge"
+        [class.is-planned]="project.status === 'planned'"
+        [class.is-progress]="project.status === 'in-progress'"
+      >
+        {{ statusLabel() }}
+      </p>
+      <h1>{{ title() }}</h1>
+      <p class="summary">{{ project.summary[i18n.lang()] }}</p>
+    </header>
+
+    <dl class="facts">
+      <div>
+        <dt>{{ i18n.t().project.period }}</dt>
+        <dd>
+          <time [attr.datetime]="project.period.start">{{ period() }}</time>
+        </dd>
+      </div>
+      @if (project.tech.length) {
+        <div>
+          <dt>{{ i18n.t().project.tech }}</dt>
+          <dd>
+            <ul class="tag-list">
+              @for (tech of project.tech; track tech) {
+                <li class="tag">{{ tech }}</li>
+              }
+            </ul>
+          </dd>
+        </div>
+      }
+    </dl>
+
+    <div class="prose">
+      @for (paragraph of paragraphs(); track $index) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+
+    <p class="actions">
+      @if (project.repoUrl) {
+        <a class="button" [href]="project.repoUrl" target="_blank" rel="noopener noreferrer">
+          {{ i18n.t().project.repository }}
+        </a>
+      } @else {
+        <span class="muted">{{ i18n.t().project.noRepo }}</span>
+      }
+      @if (project.demoUrl) {
+        <a class="button" [href]="project.demoUrl" target="_blank" rel="noopener noreferrer">
+          {{ i18n.t().project.demo }}
+        </a>
+      }
+    </p>
+  </article>
+} @else {
+  <section class="project">
+    <h1>{{ i18n.t().notFound.title }}</h1>
+    <p>{{ i18n.t().notFound.text }}</p>
+    <p>
+      <a routerLink="/">{{ i18n.t().nav.home }}</a>
+    </p>
+  </section>
+}
