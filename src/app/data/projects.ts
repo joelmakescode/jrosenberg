@@ -35,7 +35,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     slug: 'volkswagen-ag',
-    title: { de: 'Volkswagen AG als Kunde', en: 'Volkswagen AG as a client' },
+    title: { de: 'Volkswagen AG als Kunde (LHIND)', en: 'Volkswagen AG as a client (LHIND)' },
     status: 'done',
     summary: {
       de: 'Mein Einstiegsprojekt bei der LHIND',
@@ -53,13 +53,13 @@ As one of many service providers involved, our main responsibility is calculatin
 
 This project was my first contact with the world of web development. I learned to work with the Go programming language and was introduced to the React framework.`,
     },
-    period: { start: '2023-03', end: '2023-09' },
+    period: { start: '2024-03', end: '2024-09' },
     tech: ['GoLang', 'GormDB', 'React', 'TypeScript', 'CSS', 'Jira'],
     repoUrl: '',
   },
   {
     slug: 'audi-ag',
-    title: { de: 'Audi AG als Kunde', en: 'Audi AG as a client' },
+    title: { de: 'Audi AG als Kunde (LHIND)', en: 'Audi AG as a client (LHIND)' },
     status: 'done',
     summary: {
       de: 'Eine Automatisierungsplattform zum Berechnen von Excel-Tabellen',
@@ -73,13 +73,13 @@ Gewonnene Erfahrungswerte waren das Arbeiten mit Java und Spring Boot als Framew
 
 Along the way I gained experience with Java and the Spring Boot framework. I also implemented features in both the front end and the back end on my own, without a supervisor looking over my shoulder.`,
     },
-    period: { start: '2024-01', end: '2024-05' },
-    tech: ['Java', 'Spring', 'Angular', 'TypeScript', 'CSS', 'Jira'],
+    period: { start: '2025-01', end: '2025-05' },
+    tech: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'CSS', 'Jira'],
     repoUrl: '',
   },
   {
     slug: 'coritech',
-    title: 'CoriTech/HorsePlatform',
+    title: 'CoriTech/HorsePlatform (LHIND)',
     status: 'done',
     summary: {
       de: 'Konfigurator für Pferdezüchter und Kunden',
@@ -93,7 +93,7 @@ In diesem Projekt durfte ich das erste Mal mein Potenzial und die in den Vorproj
 
 This was the first project in which I could really apply my potential and everything I had learned in the previous projects. From time to time I took over team lead and coordination duties while the actual team lead was on holiday or attending training.`,
     },
-    period: { start: '2025-08', end: '2026-07' },
+    period: { start: '2026-01', end: '2026-07' },
     tech: ['GoLang', 'GormDB', 'Angular', 'TypeScript', 'CSS', 'Azure DevOps'],
     repoUrl: '',
   },

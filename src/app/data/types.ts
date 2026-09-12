@@ -26,6 +26,19 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface ResumeEntry {
+  period: Period;
+  title: Localized;
+  organisation: string;
+  description?: Localized;
+  tasks?: Localized[];
+}
+
+export interface InterestGroup {
+  label: Localized;
+  items: (string | Localized)[];
+}
+
 export interface Profile {
   name: string;
   role: Localized;
@@ -33,6 +46,8 @@ export interface Profile {
   status: Localized;
   about: Localized;
   skills: SkillGroup[];
+  resume: ResumeEntry[];
+  interests: InterestGroup[];
   links: {
     email: string;
     github: string;

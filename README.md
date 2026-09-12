@@ -23,18 +23,35 @@ cd dist/jrosenberg/browser && python3 -m http.server 8080
 
 Alles Inhaltliche liegt als typisiertes TypeScript im Repository – kein CMS, keine API:
 
-| Datei                        | Inhalt                                                          |
-| ---------------------------- | --------------------------------------------------------------- |
-| `src/app/data/profile.ts`    | Name, Rolle, Standort, Status, Über-mich-Text, Skills, Links    |
-| `src/app/data/projects.ts`   | Alle Projekte (`status: 'done' \| 'in-progress' \| 'planned'`)  |
-| `src/app/data/site.ts`       | Domain für canonical-/Open-Graph-Links, optionales Vorschaubild |
-| `src/app/data/legal.ts`      | Angaben für das Impressum                                       |
-| `src/app/i18n/dictionary.ts` | Alle UI-Texte in DE und EN                                      |
+| Datei                        | Inhalt                                                                           |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| `src/app/data/profile.ts`    | Name, Rolle, Standort, Status, Über-mich-Text, Skills, Lebenslauf, Hobbys, Links |
+| `src/app/data/projects.ts`   | Alle Projekte (`status: 'done' \| 'in-progress' \| 'planned'`)                   |
+| `src/app/data/site.ts`       | Domain für canonical-/Open-Graph-Links, optionales Vorschaubild                  |
+| `src/app/data/legal.ts`      | Angaben für das Impressum                                                        |
+| `src/app/i18n/dictionary.ts` | Alle UI-Texte in DE und EN                                                       |
 
 `title` darf ein einfacher String sein, wenn es ein Eigenname ist (`'EcoPlatform'`),
 oder `{ de, en }`, wenn er übersetzbare Wörter enthält – dafür gibt es den Helfer
 `localized()` in `src/app/shared/localized.ts`. `period` akzeptiert `'YYYY-MM'` und
 `'YYYY'`, wenn der Monat noch offen ist.
+
+Jede Gruppe unter `skills` und `interests` bekommt automatisch eine eigene Tag-Farbe
+aus `--accent-1` bis `--accent-6` in `src/styles.css`; die Zuordnung läuft über die
+Reihenfolge. Bei `interests` dürfen Einträge ein einfacher String sein (`'Gaming'`)
+oder `{ de, en }`, wenn sie übersetzt gehören.
+
+`resume` ist der Lebenslauf zwischen Fähigkeiten und Hobbys. Die Einträge werden in
+der notierten Reihenfolge angezeigt — also neueste Station zuerst eintragen. `period`
+funktioniert wie bei Projekten, `end` weglassen ergibt „– heute", `description` ist
+optional.
+
+Die `tech`-Tags eines Projekts werden nicht in der notierten Reihenfolge angezeigt:
+`src/app/shared/skill-accent.ts` sortiert sie nach der Reihenfolge der Hauptskills
+und färbt sie in der Farbe ihrer Skill-Gruppe. Ein Schrägstrich im Skill-Namen gilt
+dabei als Alias (`'TypeScript/JavaScript'` trifft auch auf `'TypeScript'` zu), der
+Abgleich ignoriert Groß- und Kleinschreibung. Tags, die in keiner Skill-Gruppe
+stehen, bleiben grau und landen hinten.
 
 `status` entscheidet, in welcher Sektion der Startseite ein Projekt landet:
 `done` → „Projekte", `in-progress` → „In Entwicklung", `planned` → „Geplant".

@@ -18,13 +18,58 @@
 <section aria-labelledby="skills-heading">
   <h2 id="skills-heading">{{ i18n.t().home.skills }}</h2>
   <dl class="skills">
-    @for (group of profile.skills; track group.label.de) {
+    @for (group of skills(); track group.label) {
       <div class="skill-group">
-        <dt>{{ group.label[i18n.lang()] }}</dt>
+        <dt>{{ group.label }}</dt>
         <dd>
           <ul class="tag-list">
             @for (item of group.items; track item) {
-              <li class="tag">{{ item }}</li>
+              <li class="tag" [attr.data-accent]="group.accent">{{ item }}</li>
+            }
+          </ul>
+        </dd>
+      </div>
+    }
+  </dl>
+</section>
+
+<section aria-labelledby="resume-heading">
+  <h2 id="resume-heading">{{ i18n.t().home.resume }}</h2>
+  <ol class="resume">
+    @for (entry of resume(); track $index) {
+      <li class="resume-entry">
+        <p class="resume-period">
+          <time [attr.datetime]="entry.start">{{ entry.period }}</time>
+        </p>
+        <div class="resume-body">
+          <p class="resume-title">{{ entry.title }}</p>
+          <p class="resume-org">{{ entry.organisation }}</p>
+          @if (entry.description) {
+            <p class="resume-note">{{ entry.description }}</p>
+          }
+          @if (entry.tasks.length) {
+            <ul class="resume-tasks">
+              @for (task of entry.tasks; track task) {
+                <li>{{ task }}</li>
+              }
+            </ul>
+          }
+        </div>
+      </li>
+    }
+  </ol>
+</section>
+
+<section aria-labelledby="interests-heading">
+  <h2 id="interests-heading">{{ i18n.t().home.interests }}</h2>
+  <dl class="interests">
+    @for (group of interests(); track group.label) {
+      <div class="interest-group">
+        <dt>{{ group.label }}</dt>
+        <dd>
+          <ul class="tag-list">
+            @for (item of group.items; track item) {
+              <li class="tag" [attr.data-accent]="group.accent">{{ item }}</li>
             }
           </ul>
         </dd>

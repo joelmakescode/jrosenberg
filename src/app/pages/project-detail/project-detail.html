@@ -5,13 +5,7 @@
     </p>
 
     <header class="project-header">
-      <p
-        class="badge"
-        [class.is-planned]="project.status === 'planned'"
-        [class.is-progress]="project.status === 'in-progress'"
-      >
-        {{ statusLabel() }}
-      </p>
+      <p class="badge" [attr.data-status]="project.status">{{ statusLabel() }}</p>
       <h1>{{ title() }}</h1>
       <p class="summary">{{ project.summary[i18n.lang()] }}</p>
     </header>
@@ -23,13 +17,13 @@
           <time [attr.datetime]="project.period.start">{{ period() }}</time>
         </dd>
       </div>
-      @if (project.tech.length) {
+      @if (tech().length) {
         <div>
           <dt>{{ i18n.t().project.tech }}</dt>
           <dd>
             <ul class="tag-list">
-              @for (tech of project.tech; track tech) {
-                <li class="tag">{{ tech }}</li>
+              @for (item of tech(); track item.name) {
+                <li class="tag" [attr.data-accent]="item.accent">{{ item.name }}</li>
               }
             </ul>
           </dd>

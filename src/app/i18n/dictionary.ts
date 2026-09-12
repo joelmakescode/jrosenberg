@@ -10,6 +10,8 @@ const DE = {
   home: {
     about: 'Über mich',
     skills: 'Fähigkeiten',
+    resume: 'Lebenslauf',
+    interests: 'Hobbys & Interessen',
     projects: 'Projekte',
     projectsIntro: 'Abgeschlossene Arbeiten.',
     inProgress: 'In Entwicklung',
@@ -78,6 +80,8 @@ const EN: Dict = {
   home: {
     about: 'About',
     skills: 'Skills',
+    resume: 'CV',
+    interests: 'Hobbies & interests',
     projects: 'Projects',
     projectsIntro: 'Finished work.',
     inProgress: 'In development',

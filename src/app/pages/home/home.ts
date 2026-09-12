@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@a
 import { PROFILE } from '../../data/profile';
 import { PROJECTS } from '../../data/projects';
 import { LanguageService } from '../../i18n/language';
+import { formatPeriod } from '../../shared/format-period';
+import { localized } from '../../shared/localized';
+import { accentFor } from '../../shared/skill-accent';
 import { Seo } from '../../shared/seo';
 import { ProjectCard } from '../../components/project-card/project-card';
 
@@ -22,6 +25,33 @@ export class Home {
   protected readonly done = PROJECTS.filter((project) => project.status === 'done');
   protected readonly inProgress = PROJECTS.filter((project) => project.status === 'in-progress');
   protected readonly planned = PROJECTS.filter((project) => project.status === 'planned');
+
+  protected readonly skills = computed(() =>
+    PROFILE.skills.map((group, index) => ({
+      label: group.label[this.i18n.lang()],
+      accent: accentFor(index),
+      items: group.items,
+    })),
+  );
+
+  protected readonly resume = computed(() =>
+    PROFILE.resume.map((entry) => ({
+      period: formatPeriod(entry.period, this.i18n.lang()),
+      start: entry.period.start,
+      title: entry.title[this.i18n.lang()],
+      organisation: entry.organisation,
+      description: entry.description?.[this.i18n.lang()],
+      tasks: (entry.tasks ?? []).map((task) => task[this.i18n.lang()]),
+    })),
+  );
+
+  protected readonly interests = computed(() =>
+    PROFILE.interests.map((group, index) => ({
+      label: group.label[this.i18n.lang()],
+      accent: accentFor(PROFILE.skills.length + index),
+      items: group.items.map((item) => localized(item, this.i18n.lang())),
+    })),
+  );
 
   protected readonly aboutParagraphs = computed(() =>
     PROFILE.about[this.i18n.lang()].split(/\n{2,}/),

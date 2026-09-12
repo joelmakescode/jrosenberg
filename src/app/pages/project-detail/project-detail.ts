@@ -6,6 +6,7 @@ import { LanguageService } from '../../i18n/language';
 import { Seo } from '../../shared/seo';
 import { formatPeriod } from '../../shared/format-period';
 import { localized } from '../../shared/localized';
+import { sortTech } from '../../shared/skill-accent';
 
 @Component({
   selector: 'app-project-detail',
@@ -41,6 +42,11 @@ export class ProjectDetail {
       case 'planned':
         return texts.statusPlanned;
     }
+  });
+
+  protected readonly tech = computed(() => {
+    const project = this.project();
+    return project ? sortTech(project.tech) : [];
   });
 
   protected readonly period = computed(() => {

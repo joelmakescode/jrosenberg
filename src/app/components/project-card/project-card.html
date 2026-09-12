@@ -9,10 +9,10 @@
     <time [attr.datetime]="project().period.start">{{ period() }}</time>
   </p>
 
-  @if (project().tech.length) {
+  @if (tech().length) {
     <ul class="tag-list">
-      @for (tech of project().tech; track tech) {
-        <li class="tag">{{ tech }}</li>
+      @for (item of tech(); track item.name) {
+        <li class="tag" [attr.data-accent]="item.accent">{{ item.name }}</li>
       }
     </ul>
   }

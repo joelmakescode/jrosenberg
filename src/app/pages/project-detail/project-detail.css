@@ -13,21 +13,25 @@
   display: inline-block;
   margin: 0;
   padding: 0.1875rem 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--badge-accent, var(--border));
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--badge-accent, var(--muted));
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
-.badge.is-planned {
-  border-style: dashed;
+.badge[data-status='done'] {
+  --badge-accent: var(--accent-2);
 }
 
-.badge.is-progress {
-  border-color: var(--accent);
-  color: var(--accent);
+.badge[data-status='in-progress'] {
+  --badge-accent: var(--accent-1);
+}
+
+.badge[data-status='planned'] {
+  --badge-accent: var(--accent-3);
+  border-style: dashed;
 }
 
 .summary {
