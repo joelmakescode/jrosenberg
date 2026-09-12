@@ -39,6 +39,11 @@ export interface InterestGroup {
   items: (string | Localized)[];
 }
 
+export interface QualityGroup {
+  label: string | Localized;
+  items: (string | Localized)[];
+}
+
 export interface Profile {
   name: string;
   role: Localized;
@@ -48,6 +53,7 @@ export interface Profile {
   skills: SkillGroup[];
   resume: ResumeEntry[];
   interests: InterestGroup[];
+  qualities: QualityGroup[];
   links: {
     email: string;
     github: string;

@@ -53,6 +53,14 @@ export class Home {
     })),
   );
 
+  protected readonly qualities = computed(() =>
+    PROFILE.qualities.map((group, index) => ({
+      label: localized(group.label, this.i18n.lang()),
+      accent: accentFor(PROFILE.skills.length + PROFILE.interests.length + index),
+      items: group.items.map((item) => localized(item, this.i18n.lang())),
+    })),
+  );
+
   protected readonly aboutParagraphs = computed(() =>
     PROFILE.about[this.i18n.lang()].split(/\n{2,}/),
   );

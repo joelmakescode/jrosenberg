@@ -136,6 +136,26 @@ export const PROFILE: Profile = {
     },
   ],
 
+  qualities: [
+    {
+      label: {
+        de: 'SSC Hagen Ahrensburg - Tischtennis',
+        en: 'SSC Hagen Ahrensburg - Table tennis',
+      },
+      items: [
+        { de: 'Kapitän der 3. Herren', en: "Captain of the third men's team" },
+        { de: 'Angehender Sportwart', en: 'Incoming sports officer' },
+      ],
+    },
+    {
+      label: {
+        de: 'Delingsdorfer SV - Tischtennis',
+        en: 'Delingsdorfer SV - Table tennis',
+      },
+      items: [{ de: 'Trainer', en: 'Coach' }],
+    },
+  ],
+
   links: {
     email: 'joel.ros@web.de',
     github: 'https://github.com/joelmakescode',

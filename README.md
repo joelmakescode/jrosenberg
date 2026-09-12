@@ -23,13 +23,13 @@ cd dist/jrosenberg/browser && python3 -m http.server 8080
 
 Alles Inhaltliche liegt als typisiertes TypeScript im Repository – kein CMS, keine API:
 
-| Datei                        | Inhalt                                                                           |
-| ---------------------------- | -------------------------------------------------------------------------------- |
-| `src/app/data/profile.ts`    | Name, Rolle, Standort, Status, Über-mich-Text, Skills, Lebenslauf, Hobbys, Links |
-| `src/app/data/projects.ts`   | Alle Projekte (`status: 'done' \| 'in-progress' \| 'planned'`)                   |
-| `src/app/data/site.ts`       | Domain für canonical-/Open-Graph-Links, optionales Vorschaubild                  |
-| `src/app/data/legal.ts`      | Angaben für das Impressum                                                        |
-| `src/app/i18n/dictionary.ts` | Alle UI-Texte in DE und EN                                                       |
+| Datei                        | Inhalt                                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `src/app/data/profile.ts`    | Name, Rolle, Standort, Status, Über-mich-Text, Skills, Lebenslauf, Hobbys, Weitere Qualitäten, Links |
+| `src/app/data/projects.ts`   | Alle Projekte (`status: 'done' \| 'in-progress' \| 'planned'`)                                       |
+| `src/app/data/site.ts`       | Domain für canonical-/Open-Graph-Links, optionales Vorschaubild                                      |
+| `src/app/data/legal.ts`      | Angaben für das Impressum                                                                            |
+| `src/app/i18n/dictionary.ts` | Alle UI-Texte in DE und EN                                                                           |
 
 `title` darf ein einfacher String sein, wenn es ein Eigenname ist (`'EcoPlatform'`),
 oder `{ de, en }`, wenn er übersetzbare Wörter enthält – dafür gibt es den Helfer
@@ -40,6 +40,9 @@ Jede Gruppe unter `skills` und `interests` bekommt automatisch eine eigene Tag-F
 aus `--accent-1` bis `--accent-6` in `src/styles.css`; die Zuordnung läuft über die
 Reihenfolge. Bei `interests` dürfen Einträge ein einfacher String sein (`'Gaming'`)
 oder `{ de, en }`, wenn sie übersetzt gehören.
+
+`qualities` ist der Abschnitt „Weitere Qualitäten" unter den Hobbys und funktioniert wie
+`interests`: `label` ist der Verein, die Einträge sind die Rollen dort.
 
 `resume` ist der Lebenslauf zwischen Fähigkeiten und Hobbys. Die Einträge werden in
 der notierten Reihenfolge angezeigt — also neueste Station zuerst eintragen. `period`

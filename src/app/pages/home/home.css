@@ -39,21 +39,24 @@
 }
 
 .skills,
-.interests {
+.interests,
+.qualities {
   display: grid;
   gap: 1rem;
   margin: 0;
 }
 
 .skill-group dt,
-.interest-group dt {
+.interest-group dt,
+.quality-group dt {
   margin-bottom: 0.4375rem;
   color: var(--muted);
   font-size: 0.875rem;
 }
 
 .skill-group dd,
-.interest-group dd {
+.interest-group dd,
+.quality-group dd {
   margin: 0;
 }
 

@@ -78,6 +78,24 @@
   </dl>
 </section>
 
+<section aria-labelledby="qualities-heading">
+  <h2 id="qualities-heading">{{ i18n.t().home.qualities }}</h2>
+  <dl class="qualities">
+    @for (group of qualities(); track group.label) {
+      <div class="quality-group">
+        <dt>{{ group.label }}</dt>
+        <dd>
+          <ul class="tag-list">
+            @for (item of group.items; track item) {
+              <li class="tag" [attr.data-accent]="group.accent">{{ item }}</li>
+            }
+          </ul>
+        </dd>
+      </div>
+    }
+  </dl>
+</section>
+
 <section aria-labelledby="projects-heading">
   <h2 id="projects-heading">{{ i18n.t().home.projects }}</h2>
   <p class="section-intro">{{ i18n.t().home.projectsIntro }}</p>
