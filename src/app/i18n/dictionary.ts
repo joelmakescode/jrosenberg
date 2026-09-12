@@ -39,12 +39,8 @@ const DE = {
     text: 'Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite weiter.',
   },
   legal: {
-    title: 'Impressum',
-    providerHeading: 'Angaben gemäß § 5 DDG',
-    contactHeading: 'Kontakt',
-    phoneLabel: 'Telefon',
-    responsibleHeading: 'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV',
-    addressAsAbove: 'Anschrift wie oben',
+    title: 'Rechtliches',
+    contactHeading: 'Verantwortlich für diese Seite',
     liabilityHeading: 'Haftung für Inhalte und Links',
     liabilityText:
       'Die Inhalte dieser Seite habe ich mit Sorgfalt erstellt. Für ihre Richtigkeit, ' +
@@ -65,7 +61,7 @@ const DE = {
   },
   footer: {
     sourceCode: 'Quellcode dieser Seite',
-    imprint: 'Impressum',
+    imprint: 'Rechtliches',
   },
 };
 
@@ -111,11 +107,7 @@ const EN: Dict = {
   },
   legal: {
     title: 'Legal notice',
-    providerHeading: 'Information pursuant to § 5 DDG',
-    contactHeading: 'Contact',
-    phoneLabel: 'Phone',
-    responsibleHeading: 'Responsible for the content pursuant to § 18 (2) MStV',
-    addressAsAbove: 'address as above',
+    contactHeading: 'Responsible for this site',
     liabilityHeading: 'Liability for content and links',
     liabilityText:
       'The content of this site was created with care. I cannot, however, guarantee that it is ' +
